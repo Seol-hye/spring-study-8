@@ -140,6 +140,7 @@ public class Request03Controller {
 		System.out.println("param8 POST요청");
 		//System.out.println(product.id);
 		System.out.println(product.toString());
+		System.out.println(product.getId());
 		
 		// (+입력시 입력화면마다 다른 제약조건으로 인해 많이 사용함)
 		// productrequestform 으로 전달받고
