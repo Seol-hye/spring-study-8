@@ -13,6 +13,10 @@ public class MyCookieUtil {
 	// 쿠키 기본 세팅 Encode/Decode 간주
 	public static String getCookieValue(Cookie[] cookies, String cookieName) {
 
+//		if (cookies == null) {
+//	        return null;
+//	    }
+		
 		String value = null;
 
 		for (Cookie ck : cookies) {
