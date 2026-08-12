@@ -12,8 +12,18 @@ import com.app.service.room.RoomService;
 @Service
 public class RoomServiceImpl implements RoomService {
 	
-	@Autowired
+	@Autowired //자동 주입
 	RoomDAO roomDAO;
+	
+	//생성자를 통한 의존성 주입
+//	public RoomServiceImpl(RoomDAO roomDAO) {
+//		this.roomDAO = roomDAO;
+//	}
+	
+	//setter 메소드를 통한 의존성 주입
+//	public void setRoomDAO(RoomDAO roomDAO) {
+//		this.roomDAO = roomDAO;
+//	}
 
 	@Override
 	public List<Room> findRoomList() {
