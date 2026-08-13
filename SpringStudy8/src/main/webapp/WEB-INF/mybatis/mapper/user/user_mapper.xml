@@ -13,4 +13,8 @@
 			#{userType}
 		)
 	</insert>
+	
+	<select id="findUserList" resultType="User">
+		select * from t_user
+	</select>
 </mapper>

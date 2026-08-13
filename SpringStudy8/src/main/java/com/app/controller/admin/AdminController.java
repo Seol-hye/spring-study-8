@@ -24,7 +24,7 @@ public class AdminController {
 	RoomService roomService;
 	
 	@Autowired
-	UserService userService
+	UserService userService;
 ;
 
 	@GetMapping("/admin/registerRoom")
@@ -101,12 +101,22 @@ public class AdminController {
 		int result = userService.saveCustomerUser(user);
 		
 		if(result > 0) {
-			
+			return "redirect:/admin/users";
 		} else {
-			
+			return "admin/addUser";
 		}
 		
-		return "admin/addUser";
+	}
+	
+	
+	@GetMapping("/admin/users")
+	public String user(Model model) {
+		List<User> userList = userService.finduserList();
+		model.addAttribute("userList", userList);
+		
+		return "admin/users";
+		
+		
 	}
 	
 	
