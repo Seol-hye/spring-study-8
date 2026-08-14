@@ -11,4 +11,6 @@ public interface UserDAO {
 	public List<User> finduserList();
 	
 	public User findUserById(String id);
+	
+	public User checkUserLogin(User user);
 }
