@@ -12,5 +12,10 @@ public class MainController {
 		//return 하는 문자열 -> view 자원 이름
 		return "main";
 	}
+	
+	@RequestMapping({"/", "/home", "/index"})
+	public String toMain() {
+		return "redirect:/main";
+	}
 
 }
