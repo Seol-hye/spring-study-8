@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+
 // @Controller 기본 return -> view 자원 리턴
 //								@ResponseBody 붙인 경우에만 텍스트 return
 @RestController //기본 return -> 텍스트 자체 return
@@ -121,6 +122,11 @@ public class Rest02Controller {
 		
 		
 		return user; //객체 리턴이 알아서 json format 변형
+	}
+	
+	@GetMapping("/rest/rest10")
+	public String rest10() {
+		return "단순 텍스트 return 합니다";
 	}
 	
 
