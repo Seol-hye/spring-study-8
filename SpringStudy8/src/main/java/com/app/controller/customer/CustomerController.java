@@ -14,6 +14,7 @@ import com.app.util.LoginManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -49,6 +50,41 @@ public class CustomerController {
 		}
 		
 	}
+	
+	
+	//중복된 아이디 체크
+	@ResponseBody
+	@PostMapping("/customer/checkDupId")
+	public String checkDupId(@RequestBody String data) {
+		//			요청 body 담겨져 오는 데이터를 단순 텍스트로 수신
+		
+		//클라이언트가 전달한 id 값을 받아서 이게 중복인지 아닌지 DB에서 조회 비교 -> 응답
+		System.out.println("/customer/checkDupId");
+		System.out.println(data);
+		
+		boolean result = userService.isDuplicatedId(data);
+		System.out.println(result);
+		
+		if(result) { //true 중복
+			return "Y";
+		} else {
+			return "N";
+		}
+		
+		// 중복 Y 	중복아니면 N
+		// 1 0
+		// T F
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("/customer/signin")
 	public String signin() {
