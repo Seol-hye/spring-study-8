@@ -3,6 +3,7 @@ package com.app.controller.admin;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.app.common.CommonCode;
 import com.app.dto.room.Room;
 import com.app.dto.room.RoomSearchCondition;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.service.room.RoomService;
 import com.app.service.user.UserService;
+import com.app.util.LoginManager;
 
 
 
@@ -291,6 +294,33 @@ public class AdminController {
 		} else { //수정 실패 -> 다시 수정 페이지
 			return "redirect:/admin/modifyUser/" + user.getId();
 		}
+	}
+	
+	
+	
+	//------------------------------------------로그인
+	@GetMapping("/admin/signin")
+	public String signin() {
+		
+		return "admin/signin";
+	}
+	
+	@PostMapping("/admin/signin")
+	public String signinAction(User user, HttpSession session) {
+
+	    user.setUserType(CommonCode.USER_USERTYPE_ADMIN); 
+	    User loginAdmin = userService.checkUserLogin(user);
+	    
+	    if (loginAdmin == null) {
+	        log.info("관리자 로그인 실패");
+	        return "admin/signin";
+	    } else {
+	        log.info("관리자 로그인 성공: {}", loginAdmin.getId());
+	        
+	        LoginManager.setSessionLoginUserId(session, loginAdmin.getId());
+	        
+	        return "redirect:/admin/rooms"; 
+	    }
 	}
 	
 	
