@@ -29,7 +29,7 @@ public class DailySalesScheduler {
 	}
 	
 	//@Scheduled(cron = "0 0 2 * * *")
-	@Scheduled(cron = "0/10 * * * * *")
+	//@Scheduled(cron = "0/10 * * * * *")
 	public void dailySales() {
 		
 		//일일정산
