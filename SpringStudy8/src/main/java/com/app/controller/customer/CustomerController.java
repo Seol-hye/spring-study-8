@@ -23,6 +23,7 @@ import com.app.dto.user.UserDupCheck;
 import com.app.dto.user.UserValidError;
 import com.app.service.user.UserService;
 import com.app.util.LoginManager;
+import com.app.validator.UserCustomerValidator;
 import com.app.validator.UserValidator;
 
 import lombok.extern.slf4j.Slf4j;
@@ -101,7 +102,7 @@ public class CustomerController {
 		// 유효성 검증
 		// customValidator
 		UserValidError userValidError = new UserValidError();
-		boolean validResult = UserCustomValidator.validate(user, userValidError);
+		boolean validResult = UserCustomerValidator.validate(user, userValidError);
 
 		if (validResult == false) {
 			model.addAttribute("userValidError", userValidError);
@@ -116,6 +117,8 @@ public class CustomerController {
 		int result = userService.saveCustomerUser(user);
 		if (result > 0) {
 			return "redirect:/main";
+		} else {
+		    return "customer/signup";
 		}
 
 	}
