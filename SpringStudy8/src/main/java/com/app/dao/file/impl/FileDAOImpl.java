@@ -20,5 +20,13 @@ public class FileDAOImpl implements FileDAO {
 		
 		return result;
 	}
+	
+	@Override
+	public FileInfo findFileInfoByFileName(String fileName) {
+
+		FileInfo fileInfo = sqlSessionTemplate.selectOne("file_mapper.findFileInfoByFileName", fileName);
+		
+		return fileInfo;
+	}
 
 }

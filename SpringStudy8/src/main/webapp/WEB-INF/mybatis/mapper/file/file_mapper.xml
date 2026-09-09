@@ -16,4 +16,10 @@
 		)
 	</insert>
 	
+	<select id="findFileInfoByFileName" parameterType="String" resultType="FileInfo">
+		select *
+		from file_info
+		where file_name = #{fileName}
+	</select>
+	
 </mapper>
